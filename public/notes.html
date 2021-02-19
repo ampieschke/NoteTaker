@@ -19,7 +19,6 @@
     <div class="icons">
       <button type="button" class="btn btn-primary"><i class="fas fa-save text-light save-note"></i></button>
       <button type="button" class="btn btn-primary"><i class="fas fa-pen text-light new-note"></i></button>
-
     </div>
   </nav>
   <div class="container-fluid">
@@ -31,8 +30,8 @@
         </div>
       </div>
       <div class="col-8">
-        <input class="note-title" placeholder="Note Title" maxlength="28" type="text">
-        <textarea class="note-textarea" placeholder="Note Text"></textarea>
+        <input class="note-title" id="note-title" placeholder="Note Title" maxlength="28" type="text">
+        <textarea class="note-textarea" id="note-text" placeholder="Note Text"></textarea>
       </div>
     </div>
   </div>
@@ -43,13 +42,39 @@
 
 <script type="text/javascript">
   const saveBtn = document.querySelector('.save-note');
-saveBtn.addEventListener('click', (e) => {
-  e.preventDefault();
+  saveBtn.addEventListener('click', (e) => {
+    e.preventDefault();
 
-  let newItem ={
-    noteTitle : ,
-    noteText : ,
+    let newItem = {
+      noteTitle: document.getElementById('note-title').value.trim(),
+      noteText: document.getElementById('note-text').value.trim(),
+    };
 
-  }
-})
+    console.log('saveBtn.onclick -> newItem', newItem);
+
+
+  fetch('api here', {
+    method: 'POST',
+    headers :{
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newItem)
+  })
+.then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          alert('Note Saved!');
+        } else {
+          alert('It is empty!');
+
+          document.getElementById('note-title').value = '';
+          document.getElementById('note-text').value - '';
+        }
+      })
+.catch((error) => {
+  console.log('error:', error);
+});
+      
+
+  });
 </script>
