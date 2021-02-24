@@ -14,7 +14,7 @@ module.exports = (app) => {
 
   app.post("/api/notes", (req, res) => {
     console.log(req.body);
-    // Take the curretn contnent of the file
+    // Take the current contnent of the file
     fs.readFile(DB_PATH, "utf-8", (err, data) => {
       if (err) throw err;
       let db = JSON.parse(data);
