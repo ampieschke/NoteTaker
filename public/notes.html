@@ -46,14 +46,14 @@
     e.preventDefault();
 
     let newItem = {
-      noteTitle: document.getElementById('note-title').value.trim(),
-      noteText: document.getElementById('note-text').value.trim(),
+      title: document.getElementById('note-title').value.trim(),
+      text: document.getElementById('note-text').value.trim(),
     };
 
     console.log('saveBtn.onclick -> newItem', newItem);
 
 
-  fetch('api here', {
+  fetch('api/notes', {
     method: 'POST',
     headers :{
       'Content-Type': 'application/json',
